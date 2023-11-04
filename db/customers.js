@@ -80,6 +80,14 @@ const updateCustomer = (req, res) => {
     res.json(newCustomer);
 }
 
+const deleteAllCustomers = () => {
+    db.query('DELETE FROM customers'), (err, result) => {
+        if (err) {
+            return console.error("an error occured", err.stack);
+        }
+    }
+}
+
 module.exports =
 {
     getCustomers: getCustomers,
@@ -87,4 +95,5 @@ module.exports =
     addCustomer: addCustomer,
     deleteCustomer: deleteCustomer,
     updateCustomer: updateCustomer,
+    deleteAllCustomers: deleteAllCustomers
 }
