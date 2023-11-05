@@ -30,3 +30,19 @@ describe('POST customer', () => {
             })
     })
 })
+
+describe('get customers', () => {
+    it('retrieving all customers', (done) => {
+        chai.request(app)
+            .get('/api/customers')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.an('array');
+                query.getCustomers()
+                    .then(customers => {
+                        res.body.length.should.equal(customers.length);
+                        done();
+                    })
+            })
+    })
+})
